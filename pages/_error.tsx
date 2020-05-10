@@ -13,7 +13,6 @@ const ErrorPage: NextPage<Props> = (props: Props) => {
   )
 }
 
-
 ErrorPage.getInitialProps = ({ res, err }: NextPageContext): Props => {
   const statusCode: number = res?.statusCode || err?.statusCode || 404
   const message = err?.message
