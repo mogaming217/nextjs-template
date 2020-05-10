@@ -2,26 +2,29 @@
   "name": "custom-server-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon && npm run copy-static",
+    "deploy:dev": "cross-env APP_ENV=dev nodemon",
     "build": "npm run build:next && npm run build:server",
     "build:next": "next build",
     "build:server": "tsc --project tsconfig.server.json",
-    "start": "cross-env NODE_ENV=production node dist/index.js"
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "copy-static": "cpx \"public/{**,.**}/{*,.*}\" \".next/static\""
   },
   "dependencies": {
-    "cross-env": "^5.2.0",
     "express": "^4.17.1",
-    "next": "latest",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
-    "@types/node": "^12.0.12",
-    "@types/react": "^16.8.17",
-    "@types/react-dom": "16.8.4",
-    "nodemon": "^1.19.0",
-    "ts-node": "^8.1.0",
-    "typescript": "^3.4.5"
+    "@types/node": "^13.13.5",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "16.9.7",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
   }
 }

@@ -7,12 +7,15 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express()
+
+  // If you want to build backend, write here.
+
   server.get('*', (req: any, res: any) => {
     return handle(req, res)
   })
+
   server.listen(port, (err: any) => {
     if (err) throw err
     console.log(`> Ready on ${process.env.CLIENT_URL || `http://localhost:${port}`}`)
   })
-
 })
