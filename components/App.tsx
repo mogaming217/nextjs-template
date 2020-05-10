@@ -3,7 +3,7 @@ import { GlobalStyle } from '@/styles/Global'
 
 export const App: FC = ({ children }) => {
   return (
-    <div className='appRootSample'>
+    <div>
       <GlobalStyle />
       { children }
     </div>
