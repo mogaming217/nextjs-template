@@ -1,6 +1,6 @@
 // Please remove this file
 
-import { FC } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Constants from '@/styles/Constants'
 
@@ -29,19 +29,18 @@ const VerticalCenter = styled.div`
   align-items: center;
 `
 
-export const Sample: FC = () => {
+export const Sample: React.FC = () => {
   return (
     <Container>
-      <Title>
-        Hello Next.js!
-      </Title>
+      <Title>Hello Next.js!</Title>
 
       <p style={{ marginTop: 16 }}>
         Firebase Hosting x CloudRun x TypeScript x Express x styled-components
       </p>
 
       <VerticalCenter style={{ marginTop: 16 }}>
-        built by <Icon src='/icon.png' alt='アイコン' style={{ marginLeft: 4 }} />
+        built by
+        <Icon src="/icon.png" alt="アイコン" style={{ marginLeft: 4 }} />
       </VerticalCenter>
     </Container>
   )

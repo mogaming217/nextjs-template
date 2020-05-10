@@ -19,6 +19,8 @@ app.prepare().then(() => {
 
   server.listen(port, (err: any) => {
     if (err) throw err
-    console.log(`> Ready on ${process.env.CLIENT_URL || `http://localhost:${port}`}`)
+    console.log(
+      `> Ready on ${process.env.CLIENT_URL || `http://localhost:${port}`}`
+    )
   })
 })

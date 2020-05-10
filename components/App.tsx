@@ -1,11 +1,11 @@
-import { FC } from 'react'
+import React from 'react'
 import { GlobalStyle } from '@/styles/Global'
 
-export const App: FC = ({ children }) => {
+export const App: React.FC = ({ children }) => {
   return (
     <div>
       <GlobalStyle />
-      { children }
+      {children}
     </div>
   )
 }

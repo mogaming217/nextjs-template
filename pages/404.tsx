@@ -1,3 +1,4 @@
+import React from 'react'
 import { NextPage } from 'next'
 
 const NotFoundPage: NextPage = () => {

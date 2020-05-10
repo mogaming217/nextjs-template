@@ -1,0 +1,22 @@
+{
+  "hosting": {
+    "public": ".next/static",
+    "rewrites": [
+      {
+        "source": "**/**",
+        "run": {
+          "serviceId": "renderer",
+          "region": "asia-northeast1"
+        }
+      }
+    ],
+    "predeploy": [
+      "npm run clean",
+      "npm run build"
+    ],
+    "postdeploy": [
+      "npm run gcloud:build",
+      "npm run gcloud:run"
+    ]
+  }
+}

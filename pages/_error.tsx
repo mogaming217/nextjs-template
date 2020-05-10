@@ -1,14 +1,15 @@
+import React from 'react'
 import { NextPage, NextPageContext } from 'next'
 
 type Props = {
-  statusCode: number,
+  statusCode: number
   message?: string
 }
 
 const ErrorPage: NextPage<Props> = (props: Props) => {
   return (
     <div>
-      <div>{ props.statusCode }</div>
+      <div>{props.statusCode}</div>
     </div>
   )
 }
