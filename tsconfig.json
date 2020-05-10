@@ -11,6 +11,11 @@
     "paths": {
       "@/*": ["./*"]
     },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
     "moduleResolution": "node",
     "strict": true,
     "noEmit": true,
