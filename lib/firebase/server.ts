@@ -1,4 +1,4 @@
-// import * as admin from 'firebase-admin'
+import * as admin from 'firebase-admin'
 
 // if (admin.apps.length === 0) {
 //   const config: any = {
@@ -20,4 +20,4 @@
 //   })
 // }
 
-// export default admin
+export default admin

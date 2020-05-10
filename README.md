@@ -1,37 +1,27 @@
-# Custom server with TypeScript + Nodemon example
+# Next.js Template
 
-The example shows how you can use [TypeScript](https://typescriptlang.com) on both the server and the client while using [Nodemon](https://nodemon.io/) to live reload the server code without affecting the Next.js universal code.
-
-Server entry point is `server/index.ts` in development and `dist/index.js` in production.
-The second directory should be added to `.gitignore`.
-
-## How to use
-
-### Using `create-next-app`
-
-Execute [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npm init next-app --example custom-server-typescript custom-server-typescript-app
-# or
-yarn create next-app --example custom-server-typescript custom-server-typescript-app
+## セットアップ
+```
+$ npm install
 ```
 
-### Download manually
-
-Download the example:
-
-```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/custom-server-typescript
-cd custom-server-typescript
+## ローカルで動かす
+```
+$ npm run dev
 ```
 
-Install it and run:
+## デプロイ
+※ CloudRunを使うために請求先アカウントの設定が必要になります
 
-```bash
-npm install
-npm run dev
-# or
-yarn
-yarn dev
-```
+- gcloud sdkが必要なのでセットアップしてください
+  - https://cloud.google.com/sdk/install?hl=ja
+- `$ GCLOUD_PROJECT=your_project_id npm run gcloud:build` を叩いてください
+  - your_project_idはご自身のプロジェクトに置き換えてください
+  - 請求先アカウントの設定が必要になると思います
+- 下記から`renderer`という名前でサービスを作ってください
+  - https://console.cloud.google.com/run?hl=ja
+  - region: asia-northeast1, 認証: 未認証の呼び出しを許可
+- 有効にしたあと、コンテナをアップロードしておく必要があるので下記を実行します
+  - `$ GCLOUD_PROJECT=your_project_id npm run gcloud:build`
+  - your_project_idはご自身のプロジェクトに置き換えてください
+- `$ firebase deploy:dev`
