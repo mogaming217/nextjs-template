@@ -1,8 +1,8 @@
 import React from 'react'
 import { NextPage, NextPageContext } from 'next'
-import { App } from '@/components/App'
-import { Sample } from '@/components/Sample'
-import { publicEnv, serverEnv } from '@/env'
+import { App } from 'components/App'
+import { Sample } from 'components/Sample'
+import { publicEnv, serverEnv } from 'env'
 
 type Props = {
   sampleValue?: string,

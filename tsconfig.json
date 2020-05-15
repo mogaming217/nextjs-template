@@ -8,9 +8,6 @@
       "es2017"
     ],
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
     "plugins": [
       {
         "name": "typescript-styled-plugin"

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import Constants from '@/styles/Constants'
+import Constants from 'styles/Constants'
 
 const Container = styled.div`
   padding: 32px 16px;
