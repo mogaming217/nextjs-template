@@ -21,3 +21,5 @@ import * as admin from 'firebase-admin'
 // }
 
 export default admin
+
+export const value = process.env.SAMPLE_VALUE

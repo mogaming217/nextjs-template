@@ -1,8 +1,9 @@
 import React from 'react'
 import { NextPage, NextPageContext } from 'next'
+import Link from 'next/link'
 import { App } from 'components/App'
 import { Sample } from 'components/Sample'
-import { publicEnv, serverEnv } from 'env'
+import { serverEnv, clientEnv } from 'env'
 
 type Props = {
   sampleValue?: string,
@@ -12,14 +13,17 @@ type Props = {
 const RootPage: NextPage<Props> = (props: Props) => (
   <App>
     <Sample />
+    <Link href='/404'>404へ</Link>
     <div>{ props.sampleValue }{ props.host }</div>
   </App>
 )
 
 RootPage.getInitialProps = ({}: NextPageContext): Props => {
+  // 404へいって、その後TOPへ返ってくるとちゃんとエラーになるので、サーバー側でしか読み取れない
+  let value = serverEnv.sampleValue
   return {
-    sampleValue: serverEnv.sampleValue,
-    host: publicEnv.host
+    sampleValue: value,
+    host: clientEnv.host
   }
 }
 

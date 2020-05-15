@@ -3,17 +3,22 @@ console.log("launch on", `node: ${process.env.NODE_ENV}`, `app_env: ${APP_ENV}`,
 
 // 環境変数
 // TODO: Server側のCredentialを埋める方法は何がいいんだろう
-// const serverEnvVars = require(`./env/server/${APP_ENV}`).default
-const publicEnvVars = require(`./env/public/${APP_ENV}`)
+const envPath = `env/.env.${APP_ENV}`
+const fs = require('fs')
+fs.statSync(envPath) // envファイルの存在確認
+const DotEnv = require('dotenv-webpack')
+const envFile = new DotEnv({ path: envPath, systemvars: true })
 
 const nextConfig = {
   webpack: config => {
     // module alias
     config.resolve.alias['@'] = __dirname
+
+    // env
+    config.plugins = config.plugins || []
+    config.plugins.push(envFile)
+
     return config
-  },
-  env: {
-    ...publicEnvVars
   },
 }
 

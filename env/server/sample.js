@@ -1,1 +1,0 @@
-SAMPLE_VALUE=z5Vkq2dS

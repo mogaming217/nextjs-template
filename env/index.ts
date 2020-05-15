@@ -2,15 +2,18 @@ interface ServerEnv {
   sampleValue: string
 }
 
-// TODO: まだちゃんと埋められてない
-export const serverEnv: ServerEnv = {
-  sampleValue: process.env.sampleValue!
-}
+// ブラウザから触ると落ちるようにしている
+export const serverEnv: ServerEnv = (() => {
+  if (process.browser) return undefined as any
+  return {
+    sampleValue: process.env.SAMPLE_VALUE!
+  } as ServerEnv
+})()
 
-interface PublicEnv {
+interface ClientEnv {
   host: string
 }
 
-export const publicEnv: PublicEnv = {
-  host: process.env.host!
+export const clientEnv: ClientEnv = {
+  host: process.env.PUBLIC_HOST!
 }
