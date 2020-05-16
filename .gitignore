@@ -6,3 +6,7 @@ node_modules/
 
 # production server output
 dist
+
+# Firebase
+.firebase
+*.log
