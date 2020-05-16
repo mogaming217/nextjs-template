@@ -36,6 +36,8 @@ $ npm run dev
 - 環境変数
   - NODE_ENV = ビルドモード だと思っているので、別途接続先を表す `APP_ENV` をデプロイ時に指定している
   - APP_ENVに基づいてビルド時にサーバーサードの環境変数を埋め込む(`next.config.js`内で)
+  - .gcloudignoreでCloudRunに渡すファイルを指定していて、`env/**` すべてを渡しているのが気持ち悪いが仕方ない…
+    - 嫌ならdotenvやめるしかない
 
 ## 設定
 - BASIC認証

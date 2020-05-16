@@ -19,7 +19,6 @@ nextApp.prepare().then(() => {
   const server = express()
 
   // basic認証
-  console.log('use basic auth:', process.env.USE_BASIC_AUTH)
   server.use(basicAuth)
 
   // Express側の処理を設定できる
