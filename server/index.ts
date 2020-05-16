@@ -1,19 +1,31 @@
 import next from 'next'
-import express from 'express'
+import express, { Request, Response } from 'express'
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const nextApp = next({ dev })
+const handle = nextApp.getRequestHandler()
 
+// 環境変数の読み込み
+import dotenv from 'dotenv'
+dotenv.config({ path: `${process.cwd()}/env/.env.${process.env.APP_ENV}` })
+
+// middleware
+import basicAuth from '../server-middleware/basicAuth'
+
+// api
 import expressApi from './custom'
 
-app.prepare().then(() => {
+nextApp.prepare().then(() => {
   const server = express()
 
-  // If you want to build backend, write here.
+  // basic認証
+  server.use(basicAuth)
+
+  // Express側の処理を設定できる
   server.use('/custom', expressApi)
 
-  server.get('*', (req: any, res: any) => {
+  // Next側の処理
+  server.get('*', (req: Request, res: Response) => {
     return handle(req, res)
   })
 

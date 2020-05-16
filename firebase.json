@@ -10,10 +10,6 @@
         }
       }
     ],
-    "predeploy": [
-      "npm run clean",
-      "npm run build"
-    ],
     "postdeploy": [
       "npm run gcloud:build",
       "npm run gcloud:run"
