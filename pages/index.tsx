@@ -13,7 +13,7 @@ type Props = {
 const RootPage: NextPage<Props> = (props: Props) => (
   <App>
     <Sample />
-    <Link href='/404'><a>404へ</a></Link>
+    <Link href='/firebase'><a>Firestoreからデータ取得</a></Link>
     <div>{ props.sampleValue }{ props.host }</div>
   </App>
 )

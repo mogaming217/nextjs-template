@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rm -rf .next && rm -rf dist",
-    "dev": "cross-env APP_ENV=local nodemon && npm run copy-static",
+    "dev": "npm run copy-static && cross-env APP_ENV=local nodemon",
     "deploy": "npm run build && firebase deploy",
     "deploy:dev": "firebase use default && cross-env APP_ENV=dev npm run deploy",
     "build": "npm run clean && npm run build:next && npm run build:server",
