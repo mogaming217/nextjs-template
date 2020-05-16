@@ -6,7 +6,7 @@ const NotFoundPage: NextPage = () => {
   return (
     <div>
       <div>Not Found</div>
-      <Link href='/'>TOP</Link>
+      <Link href='/'><a>TOP</a></Link>
     </div>
   )
 }
