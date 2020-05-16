@@ -7,7 +7,7 @@ const handle = nextApp.getRequestHandler()
 
 // 環境変数の読み込み
 import dotenv from 'dotenv'
-dotenv.config({ path: `${process.cwd()}/env/.env.${process.env.APP_ENV}`, debug: true })
+dotenv.config({ path: `${process.cwd()}/env/.env.${process.env.APP_ENV}` })
 
 // middleware
 import basicAuth from '../server-middleware/basicAuth'
