@@ -2,8 +2,6 @@ import React from 'react'
 import { NextPage } from 'next'
 import styled from 'styled-components'
 import { StyleConst } from 'styles/constants'
-import { PrimaryButton } from 'components/lv1'
-import { Widget } from 'components/lv2'
 import Link from 'next/link'
 
 const _ErrorPage = styled.div`
@@ -34,14 +32,10 @@ const ErrorPage: NextPage<Props> = (props: Props) => {
     }
   }
   return (
-    <Widget isFull>
-      <_ErrorPage>
-        <p className="message">{generateMessage()}</p>
-        <Link href="/">
-          <PrimaryButton>トップページへ</PrimaryButton>
-        </Link>
-      </_ErrorPage>
-    </Widget>
+    <_ErrorPage>
+      <p className="message">{generateMessage()}</p>
+      <Link href="/">トップページへ</Link>
+    </_ErrorPage>
   )
 }
 

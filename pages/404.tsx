@@ -1,8 +1,6 @@
 import React from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { PrimaryButton } from 'components/lv1'
-import { Widget } from 'components/lv2'
 import styled from 'styled-components'
 import { StyleConst } from 'styles/constants'
 
@@ -17,14 +15,10 @@ const _NotFoundPage = styled.div`
 
 const NotFoundPage: NextPage = () => {
   return (
-    <Widget>
-      <_NotFoundPage>
-        <p className="message">ページが見つかりませんでした</p>
-        <Link href="/">
-          <PrimaryButton>トップページへ</PrimaryButton>
-        </Link>
-      </_NotFoundPage>
-    </Widget>
+    <_NotFoundPage>
+      <p className="message">ページが見つかりませんでした</p>
+      <Link href="/">トップページへ</Link>
+    </_NotFoundPage>
   )
 }
 
