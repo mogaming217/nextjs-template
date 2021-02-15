@@ -29,15 +29,10 @@ $ npm run dev
 - Next.jsを使っている理由
   - SSRしたいから
   - TypeScriptの相性がNuxt x Vueよりいいから
-- Expressを使っている理由
-  - Next.jsのデフォルトのサーバーサイドの仕組みだと、ルーティングを上書きして使いたいときにできないから
-  - 例えば `/ogimage` みたいなパスでOGImageを返したいときに、Next.jsではページを返さないといけないので実現できない（と思う）
-    - 無理にやろうとすると `/api/ogimage` でやればいいんだけど、個人的にはこれはapiではないんだよなあみたいなモヤモヤが生まれる
 - 環境変数
-  - NODE_ENV = ビルドモード だと思っているので、別途接続先を表す `APP_ENV` をデプロイ時に指定している
-  - APP_ENVに基づいてビルド時にサーバーサードの環境変数を埋め込む(`next.config.js`内で)
-  - .gcloudignoreでCloudRunに渡すファイルを指定していて、`env/**` すべてを渡しているのが気持ち悪いが仕方ない…
-    - 嫌ならdotenvやめるしかない
+  - サーバーサイドで使いたい場合は、scripts/updateEnvVarsToCloudRun.tsでアップする
+  - env/.env.[env]を指定するようになっていて、底に書かれている内容がすべてCloudRunの環境変数として設定される
+  - Google的にはSecret Managerを使ってくれとのことなので気になるかたはそうしてください
 
 ## 設定
 - BASIC認証
