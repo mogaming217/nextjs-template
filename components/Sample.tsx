@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import Constants from 'styles/Constants'
+import { StyleConst } from 'styles/constants'
 
 const Container = styled.div`
   padding: 32px 16px;
@@ -14,8 +14,8 @@ const Container = styled.div`
 `
 
 const Title = styled.h2`
-  font-size: ${Constants.FONT.XLARGE}px;
-  font-weight: ${Constants.FONT_WEIGHT.BOLD};
+  font-size: ${StyleConst.FONT.XLARGE}px;
+  font-weight: ${StyleConst.FONT_WEIGHT.BOLD};
 `
 
 const Icon = styled.img`

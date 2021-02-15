@@ -1,0 +1,16 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isUserAuthenticated(userID) {
+      return request.auth.uid == userID;
+    }
+
+    match /users/{userID}/{imageName} {
+      allow get: if true;
+      allow create, update: if isUserAuthenticated(userID)
+        && request.resource.size <= 20 * 1024 * 1024 // 20MB以内
+        && request.resource.contentType.matches('image/.*')
+      ;
+    }
+  }
+}

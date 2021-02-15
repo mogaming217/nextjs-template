@@ -1,54 +1,86 @@
 {
-  "name": "custom-server-typescript",
+  "name": "nextjssample",
   "version": "1.0.0",
   "scripts": {
     "clean": "rm -rf .next && rm -rf dist",
-    "dev": "npm run copy-static && cross-env APP_ENV=local nodemon",
-    "deploy": "npm run build && firebase deploy",
-    "deploy:dev": "firebase use default && cross-env APP_ENV=dev npm run deploy",
-    "build": "npm run clean && npm run build:next && npm run build:server",
+    "dev": "cross-env APP_ENV=local next",
+    "deploy": "npm run clean && npm run build && firebase deploy --only hosting",
+    "deploy:dev": "firebase use dev && cross-env APP_ENV=dev npm run deploy",
+    "deploy:prod": "firebase use prod && cross-env APP_ENV=prod npm run deploy && firebase use dev",
+    "deploy:rules:dev": "firebase deploy -P dev --only firestore:rules",
+    "deploy:rules:prod": "firebase deploy -P prod --only firestore:rules",
+    "deploy:storageRules:dev": "firebase deploy -P dev --only storage:rules",
+    "deploy:storageRules:prod": "firebase deploy -P prod --only storage:rules",
+    "deploy:index:dev": "firebase deploy -P dev --only firestore:indexes",
+    "deploy:index:prod": "firebase deploy -P prod --only firestore:indexes",
+    "build": "npm run clean && npm run build:next",
     "build:next": "next build && npm run copy-static",
-    "build:server": "tsc --project tsconfig.server.json",
     "start:localDocker": "cross-env APP_ENV=local npm run build && docker build -t nextjssample . && docker run -e PORT=3000 -e APP_ENV=local -p 3000:3000 nextjssample",
-    "start": "cross-env NODE_ENV=production node dist/server/index.js",
-    "copy-static": "cpx \"public/{**,.**}/{*,.*}\" \".next/static\"",
+    "start": "next start -p $PORT",
+    "copy-static": "copyfiles -u 1 \"public/**/*\" \".next/static\"",
+    "gcloud:deploy": "npm run gcloud:build && npm run gcloud:run",
     "gcloud:build": "gcloud --project $GCLOUD_PROJECT builds submit --tag gcr.io/$GCLOUD_PROJECT/renderer",
-    "gcloud:run": "gcloud --project $GCLOUD_PROJECT beta run deploy renderer --platform managed --region asia-northeast1 --set-env-vars TZ=Asia/Tokyo,APP_ENV=$APP_ENV --image gcr.io/$GCLOUD_PROJECT/renderer",
+    "gcloud:run": "gcloud --project $GCLOUD_PROJECT run deploy renderer --platform managed --region asia-northeast1 --set-env-vars TZ=Asia/Tokyo,APP_ENV=$APP_ENV --image gcr.io/$GCLOUD_PROJECT/renderer",
     "lint": "eslint --ext .ts,.tsx .",
-    "lint:fix": "eslint --ext .ts,.tsx . --fix"
+    "lint:fix": "eslint --ext .ts,.tsx . --fix",
+    "test": "jest --detectOpenHandles --forceExit",
+    "test:withEmu": "firebase emulators:exec --only firestore 'npm run test'"
   },
   "dependencies": {
-    "basic-auth": "^2.0.1",
+    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "firebase": "^7.15.1",
-    "firebase-admin": "^8.12.1",
-    "next": "^9.4.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "styled-components": "^5.1.1"
+    "firebase": "^8.1.1",
+    "next": "^10.0.3",
+    "next-seo": "^4.17.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.13.1",
+    "react-loading-skeleton": "^2.1.1",
+    "styled-components": "^5.2.1",
+    "swr": "^0.3.9"
   },
   "devDependencies": {
-    "@types/basic-auth": "^1.1.3",
+    "@firebase/rules-unit-testing": "^1.1.5",
     "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.6",
-    "@types/node": "^14.0.13",
-    "@types/react": "^16.9.36",
-    "@types/react-dom": "16.9.8",
-    "@types/styled-components": "^5.1.0",
-    "@typescript-eslint/eslint-plugin": "^3.2.0",
-    "@typescript-eslint/parser": "^3.2.0",
-    "cpx": "^1.5.0",
+    "@types/node": "^14.14.13",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.4",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "child_process": "^1.0.2",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.2",
-    "dotenv-webpack": "^1.8.0",
-    "eslint": "^7.2.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.20.0",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.0.5",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.5",
+    "dotenv-webpack": "^6.0.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "eslint-plugin-react": "^7.21.5",
+    "firebase-admin": "^9.4.2",
+    "jest": "^26.6.3",
+    "jest-environment-uint8array": "^1.0.0",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.2",
     "typescript-styled-plugin": "^0.15.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^model/(.+)": "<rootDir>/model/$1",
+      "^repository/(.+)": "<rootDir>/repository/$1"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix"
+    ]
   }
 }
