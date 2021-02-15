@@ -34,9 +34,7 @@ export const Sample: React.FC = () => {
     <Container>
       <Title>Hello Next.js!</Title>
 
-      <p style={{ marginTop: 16 }}>
-        Firebase Hosting x CloudRun x TypeScript x styled-components
-      </p>
+      <p style={{ marginTop: 16 }}>Hey! This is Firebase Hosting x CloudRun x TypeScript x styled-components samples</p>
 
       <VerticalCenter style={{ marginTop: 16 }}>
         built by

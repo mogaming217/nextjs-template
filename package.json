@@ -24,7 +24,9 @@
     "lint": "eslint --ext .ts,.tsx .",
     "lint:fix": "eslint --ext .ts,.tsx . --fix",
     "test": "jest --detectOpenHandles --forceExit",
-    "test:withEmu": "firebase emulators:exec --only firestore 'npm run test'"
+    "test:withEmu": "firebase emulators:exec --only firestore 'npm run test'",
+    "postinstall": "husky install",
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "date-fns": "^2.16.1",
@@ -72,11 +74,6 @@
     "moduleNameMapper": {
       "^model/(.+)": "<rootDir>/model/$1",
       "^repository/(.+)": "<rootDir>/repository/$1"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
