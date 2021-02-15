@@ -1,7 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-
-(() => {
+;(() => {
   if (firebase.apps.length !== 0) {
     return firebase.app()
   }
@@ -14,7 +13,7 @@ import 'firebase/firestore'
     storageBucket: process.env.PUBLIC_STORAGE_BUCKET,
     messagingSenderId: process.env.PUBLIC_MESSAGING_SENDER_ID,
     appId: process.env.PUBLIC_APP_ID,
-    measurementId: process.env.PUBLIC_MEASUREMENT_ID
+    measurementId: process.env.PUBLIC_MEASUREMENT_ID,
   })
 })()
 

@@ -6,12 +6,12 @@ import { serverEnv } from 'env'
 if (admin.apps.length === 0) {
   const config: any = {
     type: 'service_account',
-    ...serverEnv.firebase
+    ...serverEnv.firebase,
   }
 
   admin.initializeApp({
     credential: admin.credential.cert(config),
-    databaseURL: process.env.PUBLIC_DATABASE_URL
+    databaseURL: process.env.PUBLIC_DATABASE_URL,
   })
 }
 
