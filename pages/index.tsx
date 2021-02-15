@@ -2,10 +2,10 @@ import React from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { Sample } from 'components/Sample'
-import { serverEnv, publicEnv } from 'env'
+import { publicEnv } from 'env'
 
 type Props = {
-  sampleValue?: string
+  appEnv: string
   host: string
 }
 
@@ -16,17 +16,16 @@ const RootPage: NextPage<Props> = (props: Props) => (
       <a>Firestoreからデータ取得</a>
     </Link>
     <div>
-      {props.sampleValue}
       {props.host}
+      <br />
+      {props.appEnv}
     </div>
   </>
 )
 
 RootPage.getInitialProps = (): Props => {
-  // 404へいって、その後TOPへ返ってくるとちゃんとエラーになるので、サーバー側でしか読み取れない
-  const value = serverEnv.firebase.project_id
   return {
-    sampleValue: value,
+    appEnv: publicEnv.env,
     host: publicEnv.host,
   }
 }
