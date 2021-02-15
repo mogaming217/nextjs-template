@@ -33,11 +33,11 @@
     "dist",
     ".next",
     "out",
-    "next.config.js"
+    "scripts"
   ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "next.config.js"
+    "**/*.tsx"
   ]
 }
