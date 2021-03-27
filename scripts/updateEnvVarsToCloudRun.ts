@@ -14,12 +14,15 @@ const main = async () => {
   if (!env) throw new Error('You must pass env like `npx ts-node scripts/updateEnvVarsToCloudRun.ts env`')
 
   const envFileString = fs.readFileSync(path.resolve(__dirname, `../env/.env.${env}`)).toString()
-  const envVars = envFileString.split('\n').filter(str => str.length > 0)
-  const projectID = envVars.find(str => str.startsWith('NEXT_PUBLIC_PROJECT_ID='))!.replace('NEXT_PUBLIC_PROJECT_ID=', '')
+  const envVars = envFileString
+    .split('\n')
+    .filter(str => str.length > 0)
+    .map(vars => ({ key: vars.split('=')[0], value: vars.split('=').slice(1, vars.split('=').length).join('=') }))
+  const projectID = envVars.find(vars => vars.key.startsWith('NEXT_PUBLIC_PROJECT_ID'))!.value
   execCommand(
-    `gcloud run services update ${SERVICE_NAME} --platform managed --region asia-northeast1 --project ${projectID} --update-env-vars=${envVars.join(
-      ','
-    )}`
+    `gcloud run services update ${SERVICE_NAME} --platform managed --region asia-northeast1 --project ${projectID} --update-env-vars=${envVars
+      .map(vars => `${vars.key}="${vars.value}"`)
+      .join(',')}`
   )
 }
 
