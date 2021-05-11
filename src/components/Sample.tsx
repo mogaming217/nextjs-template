@@ -7,7 +7,7 @@ export const Sample: React.FC = () => {
     <div>
       <div>Hello Next.js!</div>
 
-      <p style={{ marginTop: 16 }}>Hey! This is Firebase Hosting x CloudRun x TypeScript x styled-components samples</p>
+      <p style={{ marginTop: 16 }}>Hey! This is Firebase Hosting x CloudRun x TypeScript samples</p>
 
       <div style={{ marginTop: 16 }}>
         built by
