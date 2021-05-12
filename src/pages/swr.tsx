@@ -1,4 +1,4 @@
-import { NextPage, GetServerSideProps, GetServerSidePropsResult } from 'next'
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from 'next'
 
 type Props = {
   currentTime: string

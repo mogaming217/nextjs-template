@@ -1,6 +1,6 @@
-import React from 'react'
-import { NextPage } from 'next'
 import { firestore } from 'lib/firebase/client'
+import { NextPage } from 'next'
+import React from 'react'
 
 type Props = {
   user: any

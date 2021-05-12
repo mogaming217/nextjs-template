@@ -1,8 +1,8 @@
-import { FC } from 'react'
+import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { FC } from 'react'
 import { SWRConfig } from 'swr'
-import { DefaultSeo } from 'components/seo/DefaultSeo'
 
 const Providers: FC = ({ children }) => {
   return (
@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         <title>Next.js Sample</title>
-        <meta name="viewport" content="width=414" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
       </Head>
       <DefaultSeo />
 
