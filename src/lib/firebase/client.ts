@@ -17,4 +17,6 @@ import 'firebase/firestore'
   })
 })()
 
-export const firestore = firebase.firestore()
+const firestore = firebase.firestore()
+
+export { firestore }

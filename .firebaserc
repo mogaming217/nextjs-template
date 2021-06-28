@@ -1,5 +1,6 @@
 {
   "projects": {
-    "dev": "nextjssample"
+    "dev": "nextjssample",
+    "default": "nextjssample"
   }
 }
