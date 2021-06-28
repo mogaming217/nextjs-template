@@ -68,6 +68,7 @@
   },
   "jest": {
     "testEnvironment": "node",
+    "setupFiles": ["./jest.setup.js"],
     "moduleNameMapper": {
       "^lib/(.+)": "<rootDir>/src/lib/$1",
       "^logic/(.+)": "<rootDir>/src/logic/$1"
