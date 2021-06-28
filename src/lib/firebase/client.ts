@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
+import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 ;(() => {
   if (firebase.apps.length !== 0) {
     return firebase.app()
@@ -18,5 +20,19 @@ import 'firebase/firestore'
 })()
 
 const firestore = firebase.firestore()
+const auth = firebase.auth()
+const storage = firebase.storage()
 
-export { firestore }
+if (process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true' || process.env.NODE_ENV === 'test') {
+  console.log('setup to connect local firebase emulator suite')
+  try {
+    const config = require('../../../firebase.json')
+    firestore.useEmulator('localhost', config.emulators.firestore.port)
+    auth.useEmulator(`http://localhost:${config.emulators.auth.port}`)
+    storage.useEmulator('localhost', config.emulators.storage.port)
+  } catch {
+    // do nothing
+  }
+}
+
+export { firestore, auth, storage }

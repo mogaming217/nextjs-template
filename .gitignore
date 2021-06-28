@@ -10,3 +10,4 @@ dist
 # Firebase
 .firebase
 *.log
+firebase_emulators_data

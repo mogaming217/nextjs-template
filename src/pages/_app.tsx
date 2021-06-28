@@ -1,3 +1,4 @@
+import { AuthProviderContainer } from 'hooks/auth'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -13,7 +14,7 @@ const Providers: FC = ({ children }) => {
         shouldRetryOnError: false,
       }}
     >
-      {children}
+      <AuthProviderContainer>{children}</AuthProviderContainer>
     </SWRConfig>
   )
 }
